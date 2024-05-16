@@ -1,0 +1,36 @@
+.container {
+    background: #fff;
+    border-radius: 10px; /* Adjust the value to control the roundness of corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adjust values for shadow effect */
+    text-align: center;
+    padding: 2rem;
+    width: 600px;
+    margin-top: 10%;
+    margin: auto;
+  }
+  
+  /* Other styles for your login elements go here */
+  .header {
+    /* Styles for header */
+  }
+  
+  .inputs {
+    /* Styles for inputs */
+  }
+  
+  .input {
+    /* Styles for individual input */
+  }
+  
+  .forgot-password {
+    /* Styles for forgot password */
+  }
+  
+  .submit-containter {
+    /* Styles for submit container */
+  }
+  
+  .submit {
+    /* Styles for submit button */
+  }
+  
