@@ -1,0 +1,9 @@
+.scenario{
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.scenario-container-row{
+    padding: 2rem;
+    display: flex;
+}

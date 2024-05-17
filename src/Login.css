@@ -1,36 +1,45 @@
-.container {
-    background: #fff;
-    border-radius: 10px; /* Adjust the value to control the roundness of corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adjust values for shadow effect */
-    text-align: center;
-    padding: 2rem;
-    width: 600px;
-    margin-top: 10%;
-    margin: auto;
-  }
-  
-  /* Other styles for your login elements go here */
-  .header {
-    /* Styles for header */
-  }
-  
-  .inputs {
-    /* Styles for inputs */
-  }
-  
-  .input {
-    /* Styles for individual input */
-  }
-  
-  .forgot-password {
-    /* Styles for forgot password */
-  }
-  
-  .submit-containter {
-    /* Styles for submit container */
-  }
-  
-  .submit {
-    /* Styles for submit button */
-  }
-  
+body {
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10rem;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 0.75rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

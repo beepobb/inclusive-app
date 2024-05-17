@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: white;
+    color:#333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.8rem;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    position: fixed; /* Fix sidebar position */
+    top: 0; /* Align sidebar to top of viewport */
+    bottom: 0; /* Align sidebar to bottom of viewport */
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.profile p {
+    margin: 0.5rem 0 0;
+}
+
+.site-title {
+    font-size: 2rem;
+    margin-top: 2rem;
+}
+
+.nav-links ul {
+    margin-top: 4rem;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.nav-links li {
+    margin: 1rem 0;
+}
+
+.nav-links a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+.nav-links a:hover,
+.nav-links .active{
+    background-color: #d3d3d3;
+    padding: 0.6rem;
+}
+
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    margin-left: 250px; /* Adjust margin to account for sidebar width */
+    overflow-y: auto;
+}
+
+/* Hide scrollbar for the main content */
+.main-content::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.user-info {
+    margin-top: 1rem;
+}
+
+.user-info h2 {
+    margin: 0;
+}
+
+.stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.achievements, .inventory {
+    margin-top: 2rem;
+}
+
+.achievement-list, .inventory-list {
+    display: flex;
+    gap: 1rem;
+}

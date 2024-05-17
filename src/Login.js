@@ -1,30 +1,50 @@
-import React from "react";
-import "./Login.css"
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Login.css';  // Ensure you have the necessary CSS for styling
 
-const Login = () => {
-  return (
-    <div className="container">
-      <div className="header">
-        <div className="text">Login</div>
-      </div>
-      <div className="inputs">
-        <div className="input">
-            <input type="text"/>
-        </div>
-        <div className="input">
-            <input type="email"/>
-        </div>
-        <div className="input">
-            <input type="password"/>
-        </div>
-      </div>
-      <div className="forgot-password">Forgot password?<span>Click Here!</span></div>
-      <div className="submit-containter">
-        <div className="submit">Sign Up</div>
-        <div className="submit">Login</div>
-      </div>
-    </div>
-  );
-};
+export default function Login({ setIsAuthenticated }) {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
-export default Login;
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Here, you would normally send a request to your server to authenticate the user
+        // For simplicity, we will assume the authentication is successful if both fields are filled
+
+        if (username && password) {
+            // Simulate an authentication process
+            setIsAuthenticated(true);
+            navigate('/dashboard/discover');
+        } else {
+            alert("Please enter both username and password");
+        }
+    };
+
+    return (
+        <div className="login-container">
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Username: </label>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Password: </label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    );
+}

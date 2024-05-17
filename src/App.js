@@ -1,32 +1,18 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom"; // Import BrowserRouter
-import Navbar from "./navbar";
-import Home from "./Home";
-import Login from "./Login";
-import Forum from "./Forum";
-import "./App.css"; // Import the CSS file
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './Login';
+import Dashboard from './Dashboard';
 
-const App = () => {
-  return (
-    <Router> {/* Wrap everything in Router */}
-      <AppContent />
-    </Router>
-  );
-};
+export default function App() {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-const AppContent = () => { // Separate component to use useLocation
-  const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
-  return (
-    <div className={`app-container ${isLoginPage ? "login-background" : ""}`}>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/forum" element={<Forum />} />
-      </Routes>
-    </div>
-  );
-};
-
-export default App;
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Navigate to="/login" />} />
+                <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+                <Route path="/dashboard/*" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
+            </Routes>
+        </Router>
+    );
+}
