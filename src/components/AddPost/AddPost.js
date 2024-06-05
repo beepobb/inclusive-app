@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NewPostForm from '../NewPostForm/NewPostForm';
-import './AddPost.css';
+// import './AddPost.css';
 
 export default function AddPost() {
   const navigate = useNavigate();
