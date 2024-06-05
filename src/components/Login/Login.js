@@ -15,7 +15,7 @@ export default function Login({ setIsAuthenticated }) {
         if (username && password) {
             // Simulate an authentication process
             setIsAuthenticated(true);
-            navigate('/dashboard/discover');
+            navigate('/discover');
         } else {
             alert("Please enter both username and password");
         }

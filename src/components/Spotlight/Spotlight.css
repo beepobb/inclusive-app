@@ -1,0 +1,30 @@
+.spotlight {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 200px;
+    margin-bottom: 0.2em;
+    overflow: hidden;
+}
+
+.spotlight-content{
+    padding: 2.5em;
+}
+
+.spotlight-title {
+    font-size: 1.5em; /* Increase font size */
+    margin: 0.8em 0 0.8em 0; /* Adjust margin */
+}
+
+.spotlight-text {
+    font-size: 1.2em; /* Increase font size */
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+  
+  

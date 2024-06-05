@@ -1,0 +1,48 @@
+.forum {
+    margin: 0 2em;
+    padding: 2rem;
+}
+
+.add-post-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: #007bff; /* Blue background */
+    color: white;
+    font-size: 24px; /* Adjust icon size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add some shadow */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-post-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+.posts {
+margin-top: 2rem;
+}
+
+.spotlight-container {
+display: flex;
+overflow-x: auto;
+white-space: nowrap;
+padding: 1rem 0;
+}
+
+.spotlight-container::-webkit-scrollbar {
+display: none; /* Hide scrollbar for webkit browsers */
+}
+
+.spotlight-wrapper {
+display: inline-block;
+margin-right: 1.8rem; /* Space between spotlights */
+}
