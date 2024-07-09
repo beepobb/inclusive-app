@@ -1,57 +1,104 @@
-import { db } from './db.js';
+import { DataTypes } from '@sequelize/core';
 
-const collectionName = 'staff'
+import database from '../config/database.js';
 
-class Staff {
-    constructor(id, name, password, role, points) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.role = role;
-        this.points = points;
+
+const Staff = database.define(
+    'Staff',
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        role: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            default: 'user',
+        },
+        points: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            default: 0,
+        },
+    },
+    {
+        tableName: 'Staff',
+        timestamps: false,
+    },
+);
+
+
+function maskStaffDetails(staff) {
+    return {
+        id: staff.id,
+        name: staff.name,
+        email: staff.email,
+        points: staff.points,
     }
 }
 
-/** Return all staffs */
-async function all() {
-    const connection = await db.pool.getConnection();
-    try {
-        const [rows, fields] = await connection.query('SELECT * FROM staff');
-        return rows.map(row => new Staff(row.id, row.name, row.password, row.role, row.points));
-    } catch (error) {
-        console.error("Database query failed:", error);
-        throw error;
-    } finally {
-        connection.release();
-    }
+/** return all staffs */
+async function getStaffs() {
+    return await Staff.findAll();
 }
 
-/** Find a set of staffs satisfying conditions */
-async function find(conditions) {
-    const connection = await db.pool.getConnection();
-    try {
-        const [rows, fields] = await connection.query('SELECT * FROM staff WHERE ?', conditions);
-        return rows.map(row => new Staff(row.id, row.name, row.password, row.role, row.points));
-    } catch (error) {
-        console.error("Database query failed:", error);
-        throw error;
-    } finally {
-        connection.release();
-    }
+/** find a staff satisfying name predicate */
+async function findStaffByName(name) {
+    const staff = await Staff.findOne({
+        where: {
+            name: name
+        }
+    });
+    return staff;
 }
 
-/** Insert a list of staffs */
-async function insertMany(staffs) {
-    const connection = await db.pool.getConnection();
-    try {
-        const values = staffs.map(staff => [staff.id, staff.name, staff.password, staff.role, staff.points]);
-        await connection.query('INSERT INTO staff (id, name, password, role) VALUES ?', [values]);
-    } catch (error) {
-        console.error("Database insertion failed:", error);
-        throw error;
-    } finally {
-        connection.release();
-    }
+/** find a staff satisfying email predicate */
+async function findStaffByEmail(email) {
+    const staff = await Staff.findOne({
+        where: {
+            email: email
+        }
+    });
+    return staff;
 }
 
-export { Staff, all, find, insertMany }
+/** find a staff satisfying id predicate */
+async function findStaffById(id) {
+    const staff = await Staff.findByPk(id);
+    return staff;
+}
+
+/** insert a staff */
+async function insertStaff(staff) {
+    return await Staff.create({
+        name: staff.email.substring(0, staff.email.indexOf('@')),
+        email: staff.email,
+        password: staff.password,
+        role: staff.role ?? 'user',
+        points: 0,
+    });
+}
+
+/** update staff points */
+async function updateStaffPoints(staffId, updatedStaffPoints) {
+    const staff = await findStaffById(staffId);
+    staff.points = updatedStaffPoints;
+    await staff.save();
+    return staff;
+}
+
+export default Staff;
+export { getStaffs, findStaffByName, findStaffByEmail, findStaffById, insertStaff, maskStaffDetails, updateStaffPoints };

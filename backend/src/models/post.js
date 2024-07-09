@@ -1,52 +1,82 @@
-import { db } from './db.js';
+import { DataTypes, Op } from '@sequelize/core';
 
-const tableName = 'post'
+import database from '../config/database.js';
+import { findStaffById, maskStaffDetails } from '../models/staff.js';
 
-class Post {
-    constructor(id, title, content, date) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.date = date;
+
+const Post = database.define(
+    'Post',
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        content: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        post_date: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
+        post_user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+    },
+    {
+        tableName: 'Post',
+        timestamps: false,
+    },
+);
+
+/** add user into post details */
+async function addUserDetailsToPost(post) {
+    const user = await findStaffById(post.post_user_id);
+    return {
+        id: post.id,
+        title: post.title,
+        content: post.content,
+        post_date: post.post_date,
+        post_user: maskStaffDetails(user),
     }
 }
 
-async function all() {
-  try {
-    const [rows, fieldDefs] = await db.pool.query(`
-            SELECT * FROM ${tableName}
-        `);
-    var list = [];
-    for (let row of rows) {
-      let post = new Post(row.id, row.title, row.content, row.date);
-      list.push(post);
-    }
-    return list;
-  } catch (error) {
-    console.error("database connection failed. " + error);
-    throw error;
-  }
+/** return all posts */
+async function getPosts() {
+    const posts = await Post.findAll({order: [['post_date', 'DESC']]})
+    return await Promise.all(posts.map(addUserDetailsToPost));
 }
 
-async function insertOne(post) {
-  try {
-    const [rows, fieldDefs] = await db.pool.query(
-      `
-            INSERT INTO ${tableName} (title, content) VALUES (?, ?)
-        `,
-      [post.title, post.content]
-    );
-  } catch (error) {
-    console.error("database connection failed. " + error);
-    throw error;
-  }
+/** find a set of posts satisfying search predicate */
+async function findPostsByText(text) {
+    const posts = await Post.findAll({
+        where: {
+            [Op.or]: [
+                { title: { [Op.like]: `%${text}%` } },
+                { content: { [Op.like]: `%${text}%` } },
+            ]
+        },
+        order: [['post_date', 'DESC']],
+    });
+    return await Promise.all(posts.map(addUserDetailsToPost));
 }
 
-async function insertMany(posts) {
-  for (let post of posts) {
-    await insertOne(post);
-  }
+/** insert a post */
+async function insertPost(post) {
+    const newPost = await Post.create({
+        title: post.title,
+        content: post.content,
+        post_user_id: post.post_user_id,
+    });
+    return await addUserDetailsToPost(newPost);
 }
 
-
-export { Post, all, find, insertMany }
+export default Post;
+export { getPosts, findPostsByText, insertPost };
