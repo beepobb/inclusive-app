@@ -5,7 +5,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import AddPost from './components/AddPost/AddPost';
 import Discover from './components/Discover/Discover';
 import Forum from './components/Forum/Forum';
-
+ 
 export default function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
