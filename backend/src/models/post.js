@@ -49,4 +49,4 @@ async function insertMany(posts) {
 }
 
 
-export default { Post, all, find, insertMany }
+export { Post, all, find, insertMany }

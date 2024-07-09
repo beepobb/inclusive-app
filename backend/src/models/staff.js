@@ -54,4 +54,4 @@ async function insertMany(staffs) {
     }
 }
 
-export default { Staff, all, find, insertMany }
+export { Staff, all, find, insertMany }

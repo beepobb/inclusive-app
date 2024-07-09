@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { all } from '../models/post';
-var router = Router;
+import { all } from '../models/post.js';
+var router = Router();
 
 // GET post listing
 router.get('/all', async function(req, res, next){
