@@ -1,6 +1,15 @@
 .forum {
-    margin: 0 2em;
-    padding: 2rem;
+    margin: 0 10rem;
+}
+
+.sticky-search {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #F7FAFC;
+    z-index: 1; /* Ensures the search bar is above other content */
+    padding-top: 3rem;
 }
 
 .add-post-button {

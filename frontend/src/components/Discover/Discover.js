@@ -25,7 +25,7 @@ export default function Discover() {
     return (
         <DeafultLayout>
             <div className="scenario">
-                <h1>Explore Scenarios</h1>
+                <h1>Inclusivity Rush</h1>
                 <div className="scenario-container-row">
                     <Card title={cardData.title} content={cardData.content} options={cardData.options} />
                 </div>

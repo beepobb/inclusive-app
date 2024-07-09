@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './layout.css'
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import ExploreIcon from '@mui/icons-material/Explore';
 import ForumIcon from '@mui/icons-material/Forum';
+import LogoutIcon from '@mui/icons-material/Logout';
 import logo from '../../uni.svg';
+import { Box } from '@mui/material';
 
 const DeafultLayout = ({ children }) => {
+  const [point, setPoint] = useState(0);
   const navigate = useNavigate();
   const handleSignOut = () => {
     navigate('/login');
@@ -21,7 +24,7 @@ const DeafultLayout = ({ children }) => {
         </div>
           <ul>
             <li>
-              <NavLink to="/discover" activeClassName="active">
+              <NavLink to="/discover">
                   <div className="nav-item">
                       <ExploreIcon className="nav-logo" style={{ marginTop:5, fontSize:30}}/>
                       <span className="nav-text">Discover</span>
@@ -29,7 +32,7 @@ const DeafultLayout = ({ children }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard" activeClassName="active">
+              <NavLink to="/dashboard">
                   <div className="nav-item">
                       <AccountBoxIcon className="nav-logo" style={{ marginTop:5, fontSize:30}}/>
                       <span className="nav-text">Dashboard</span>
@@ -37,7 +40,7 @@ const DeafultLayout = ({ children }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/forum" activeClassName="active">
+              <NavLink to="/forum">
                   <div className="nav-item">
                       <ForumIcon className="nav-logo" style={{ marginTop:5, fontSize:30}}/>
                       <span className="nav-text">Forum</span>
@@ -47,10 +50,22 @@ const DeafultLayout = ({ children }) => {
             <li>
               <button className="signout" onClick={handleSignOut}>
                 <div className="nav-item">
-                    <AccountBoxIcon className="nav-logo" style={{fontSize:30}}/>
+                    <LogoutIcon className="nav-logo" style={{fontSize:30}}/>
                     <span className="btn-text">Sign Out</span>
                 </div>
               </button>
+            </li>
+            <li>
+              <Box sx={{width: 250, height: 140, borderRadius: 2, bgcolor: '#E16262'}}>
+                <div className='box-content'>
+                  <span className='box-text'>Today's Progress</span>
+                  <Box sx={{width: 190, height: 50, borderRadius: 2, bgcolor: 'white'}}>
+                    <div className='box-content'>
+                      <span className='pt-text'>+ {point} pts</span>
+                    </div>
+                  </Box>
+                </div>
+              </Box>
             </li>
           </ul>
         </nav>

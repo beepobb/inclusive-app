@@ -46,7 +46,7 @@ body {
 }
 
 .nav-links li {
-    margin: 2.8rem 0;
+    margin: 2rem 0;
     list-style: none;
 }
 
@@ -141,16 +141,43 @@ body {
     margin-top: 1rem; /* Adjust margin as needed */
   }
   
-  .logo-img {
-    width: 5rem;
-    height: auto;
-  }
+.logo-img {
+width: 5rem;
+height: auto;
+}
 
 .main-content {
     flex: 1;
-    padding: 2rem;
     margin-left: 21rem;
     overflow-y: auto;
+}
+
+.box-text{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 1.5rem 0 0.8rem;
+}
+
+.box-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.pt-text{
+    color: #525252;
+    font-family: Inter;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 0.8rem
 }
 
 /* Hide scrollbar for the main content */

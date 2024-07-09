@@ -6,7 +6,7 @@ const Post = ({ post }) => {
     <div className="post">
       <h2>{post.title}</h2>
       <p>{post.content}</p>
-      <span className="author">Posted by: {post.author}</span>
+      <span className="author">Posted by {post.author}</span>
     </div>
   );
 };
