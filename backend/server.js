@@ -1,12 +1,6 @@
-const express = require('express');
-const cors = require('cors');
-var process = require('process');
-var db = require('./models/db.js');
-
-process.on('SIGINT', db.cleanup);
-process.on('SIGTERM', db.cleanup);
-var postRouter = require('./routes/post.js');
-var app = express();
+import express from 'express';
+import cors from 'cors';
+const app = express();
 
 app.use(cors());
 

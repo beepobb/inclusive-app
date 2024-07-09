@@ -1,4 +1,6 @@
-const db = require('./db');
+import { db } from './db.js';
+
+const collectionName = 'staff'
 
 class Staff {
     constructor(id, name, password, role, points) {
@@ -52,4 +54,4 @@ async function insertMany(staffs) {
     }
 }
 
-module.exports = { Staff, all, find, insertMany };
+export default { Staff, all, find, insertMany }

@@ -1,4 +1,4 @@
-const db = require('./db.js');
+import { db } from './db.js';
 
 const tableName = 'post'
 
@@ -48,4 +48,5 @@ async function insertMany(posts) {
   }
 }
 
-module.exports = { Post, all, insertOne, insertMany };
+
+export default { Post, all, find, insertMany }
