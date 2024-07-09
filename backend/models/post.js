@@ -1,6 +1,6 @@
-const db = require('./db.js').db;
+const db = require('./db.js');
 
-const collectionName = 'post'
+const tableName = 'post'
 
 class Post {
     constructor(id, title, content, date) {
@@ -11,39 +11,41 @@ class Post {
     }
 }
 
-/** return all post */
 async function all() {
-    const post = await find({});
-    return post;
+  try {
+    const [rows, fieldDefs] = await db.pool.query(`
+            SELECT * FROM ${tableName}
+        `);
+    var list = [];
+    for (let row of rows) {
+      let post = new Post(row.id, row.title, row.content, row.date);
+      list.push(post);
+    }
+    return list;
+  } catch (error) {
+    console.error("database connection failed. " + error);
+    throw error;
+  }
 }
 
-/** find a set of post satisfying p */
-async function find(p) {
-    try {
-        const collection = db.collection(collectionName);
-        const cursor = collection.find(p);
-        var post = [];
-        while (await cursor.hasNext()) {
-            const dbobj = await cursor.next();
-            post.push(new Post(dbobj.id, dbobj.title, dbobj.content, dbobj.date));
-        }
-        return post;
-    } catch(error) {
-        console.error("database connection failed." + error);
-        throw error;
-    } 
+async function insertOne(post) {
+  try {
+    const [rows, fieldDefs] = await db.pool.query(
+      `
+            INSERT INTO ${tableName} (title, content) VALUES (?, ?)
+        `,
+      [post.title, post.content]
+    );
+  } catch (error) {
+    console.error("database connection failed. " + error);
+    throw error;
+  }
 }
 
-/** insert a list of post */
-async function insertMany( post ) {
-    try {
-        const collection = db.collection(collectionName);
-        await collection.insertMany(post);
-    } catch(error) {
-        console.error("database connection failed." + error);
-        throw error;
-    } 
+async function insertMany(posts) {
+  for (let post of posts) {
+    await insertOne(post);
+  }
 }
 
-
-module.exports = { Post, all, find, insertMany }
+module.exports = { Post, all, insertOne, insertMany };
