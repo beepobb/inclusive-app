@@ -9,16 +9,16 @@ body {
     height: 100vh;
 }
 
+
 .sidebar {
-    width: 250px;
+    width: 21rem;
     color:#333;
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding-top: 1.8rem;
-    position: fixed; /* Fix sidebar position */
-    top: 0; /* Align sidebar to top of viewport */
-    bottom: 0; /* Align sidebar to bottom of viewport */
+    position: fixed;
+    top: 0;
+    bottom: 0;
 }
 
 .profile {
@@ -41,19 +41,13 @@ body {
     margin-top: 2rem;
 }
 
-.nav-links{
-    align-items: center;
-}
-
 .nav-links ul {
     margin-top: 4rem;
-    list-style: none;
-    padding: 0;
-    width: 100%;
 }
 
 .nav-links li {
-    margin: 1rem 0;
+    margin: 2.8rem 0;
+    list-style: none;
 }
 
 .nav-links a {
@@ -61,20 +55,101 @@ body {
     text-decoration: none;
     display: block;
     padding: 0.5rem 1rem;
-    width: 100%;
+    width: 12rem;
+    height: 2.5rem;
+    border-radius: 0.5em;
 }
 
-.nav-links .active{
-    color:black;
-    background-color: #FFFFFF;
-    padding: 0.6rem;
+.nav-links .active {
+    background-color: white;
 }
 
+.nav-links .active .nav-text {
+    color: #525252;
+}
+
+.nav-links .active .nav-logo{
+    color:#E16262;
+}
+
+.nav-text {
+    margin-left: 0.4rem;
+    padding-top: 0.5rem;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.2rem;
+}
+
+.signout {
+    color: #D8D8D8;
+    background-color: #F7FAFC;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    width: 14rem;
+    height:3.5rem;
+    border-radius: 0.5em;
+}
+
+.nav-links a:hover{
+    background-color: white;
+}
+
+.nav-links a:hover .nav-text {
+    color: #525252; 
+}
+
+.nav-links a:hover .nav-logo {
+    color: #E16262;
+}
+
+
+.nav-links button.signout:hover{
+    background-color: white;
+}
+
+.nav-links button.signout:hover .btn-text {
+    color: #525252; 
+}
+
+.nav-links button.signout:hover .nav-logo {
+    color: #E16262; 
+}
+.btn-text {
+    margin-left: 0.4rem;
+    padding-top: 0.2rem;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.logo-container {
+    display: flex;
+    justify-content: center; /* Center logo horizontally */
+    align-items: center; /* Center logo vertically */
+    margin-top: 1rem; /* Adjust margin as needed */
+  }
+  
+  .logo-img {
+    width: 5rem;
+    height: auto;
+  }
 
 .main-content {
     flex: 1;
     padding: 2rem;
-    margin-left: 250px; /* Adjust margin to account for sidebar width */
+    margin-left: 21rem;
     overflow-y: auto;
 }
 
@@ -83,7 +158,6 @@ body {
     width: 0;
     height: 0;
 }
-
 
 
 .header {
@@ -113,4 +187,9 @@ body {
 .achievement-list, .inventory-list {
     display: flex;
     gap: 1rem;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../../fonts/Inter.ttf') format('truetype');
 }
