@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import './layout.css'
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import ExploreIcon from '@mui/icons-material/Explore';
@@ -7,12 +7,14 @@ import ForumIcon from '@mui/icons-material/Forum';
 import LogoutIcon from '@mui/icons-material/Logout';
 import logo from '../../uni.svg';
 import { Box } from '@mui/material';
+import UserContext from '../../contexts/UserContext';
 
 const DeafultLayout = ({ children }) => {
-  const [point, setPoint] = useState(0);
-  const navigate = useNavigate();
+  const [user, setUser] = useContext(UserContext);
+
   const handleSignOut = () => {
-    navigate('/login');
+    console.log('DeafultLayout#handleSignOut', user);
+    setUser(null);
   };
 
   return (
@@ -58,10 +60,10 @@ const DeafultLayout = ({ children }) => {
             <li>
               <Box sx={{width: 250, height: 140, borderRadius: 2, bgcolor: '#E16262'}}>
                 <div className='box-content'>
-                  <span className='box-text'>Today's Progress</span>
+                  <span className='box-text'>Your Score</span>
                   <Box sx={{width: 190, height: 50, borderRadius: 2, bgcolor: 'white'}}>
                     <div className='box-content'>
-                      <span className='pt-text'>+ {point} pts</span>
+                      <span className='pt-text'>{user ? user.points : 0} pts</span>
                     </div>
                   </Box>
                 </div>

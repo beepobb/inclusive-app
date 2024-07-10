@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import UserContext from '../../contexts/UserContext';
+import logIn from '../../contracts/login';
 import './Login.css';  // Ensure you have the necessary CSS for styling
 
-export default function Login({ setIsAuthenticated }) {
+export default function Login() {
+    const [user, setUser] = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Here, you would normally send a request to your server to authenticate the user
-        // For simplicity, we will assume the authentication is successful if both fields are filled
-
+        console.log('Login#handleSubmit', user)
         if (email && password) {
-            // Simulate an authentication process
-            setIsAuthenticated(true);
-            navigate('/discover');
-        } else {
-            alert("Please enter both email and password");
+            logIn({ email, password })
+                .then((user) => {
+                    console.log('Got user', user);
+                    if (!user.token) {
+                        alert("Email or password is incorrect");
+                        return
+                    }
+                    setUser(user);
+                })
+                .catch((err) => {
+                    console.error("Got error", err)
+                    alert("Something went wrong, please try again");
+                })
         }
     };
 

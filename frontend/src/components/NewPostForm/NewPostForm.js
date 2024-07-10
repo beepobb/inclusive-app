@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 import './NewPostForm.css';
+import createPost from '../../contracts/createpost.js';
 
-const NewPostForm = ({ addPost }) => {
+const NewPostForm = () => {
+  const [user] = useContext(UserContext);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title && content && author) {
-      addPost({ title, content, author });
-      setTitle('');
-      setContent('');
-      setAuthor('');
+    if (title && content && user) {
+      createPost({
+        title: title,
+        content: content,
+        post_user_id: user.id,
+      })
+        .then((result) => {
+          alert('New post created!')
+          setTitle('');
+          setContent('');
+          navigate('/forum');
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Something went wrong, please try again");
+        })
     }
   };
 
@@ -28,12 +43,6 @@ const NewPostForm = ({ addPost }) => {
         placeholder="Content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Author"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
       />
       <button type="submit">Post</button>
     </form>

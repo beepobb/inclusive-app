@@ -4,7 +4,7 @@ import DefaultLayout from '../Layout/layout';
 import './Dashboard.css'
 import Post from '../Post/Post';
 
-import SearchBar from '../SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default function Dashboard() {
     const post1 = {
