@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';  // Ensure you have the necessary CSS for styling
 
 export default function Login({ setIsAuthenticated }) {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
@@ -12,12 +12,12 @@ export default function Login({ setIsAuthenticated }) {
         // Here, you would normally send a request to your server to authenticate the user
         // For simplicity, we will assume the authentication is successful if both fields are filled
 
-        if (username && password) {
+        if (email && password) {
             // Simulate an authentication process
             setIsAuthenticated(true);
             navigate('/discover');
         } else {
-            alert("Please enter both username and password");
+            alert("Please enter both email and password");
         }
     };
 
@@ -26,11 +26,11 @@ export default function Login({ setIsAuthenticated }) {
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Username: </label>
+                    <label>Email: </label>
                     <input
                         type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>

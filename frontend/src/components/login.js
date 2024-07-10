@@ -1,26 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import './signin.css';
+import logIn from '../contracts/login.js';
+import './login.css';
 
-async function loginUser(credentials) {
-  return fetch('http://localhost:8080/signin', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
- }
 
 export default function SignIn({ setToken }) {
-  const [username, setUserName] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
-      username,
+    const token = await logIn({
+      email,
       password
     });
     setToken(token);
@@ -31,8 +22,8 @@ export default function SignIn({ setToken }) {
       <h1>Please Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          <p>Username</p>
-          <input type="text" onChange={e => setUserName(e.target.value)}/>
+          <p>Email</p>
+          <input type="text" onChange={e => setEmail(e.target.value)}/>
         </label>
         <label>
           <p>Password</p>
