@@ -27,9 +27,6 @@ export default function Forum() {
                 <>
                     <Post post={post1}/>
                     <Post post={post1}/>
-                    <Post post={post1}/>
-                    <Post post={post1}/>
-                    <Post post={post1}/>
                 </>
                 <Link to="/forum/new-post">
                     <button className="add-post-button" onClick={handleAddPost}>
