@@ -27,14 +27,15 @@ CREATE TABLE Post (
 );
 
 -- Insert sample data into the Staff table
-INSERT INTO Staff (name, email, password, role) VALUES
-('John.Doe', 'John.Doe@nus.com', 'password123', 'admin'),
-('Jane-Smith', 'Jane-Smith@nus.com', 'password456', 'admin'),
-('Alice.Johnson', 'Alice.Johnson@sutd.com', 'password789', 'user');
+INSERT INTO Staff (name, email, password, role, points) VALUES
+('John.Doe', 'John.Doe@nus.com', 'password123', 'admin', 376),
+('Jane-Smith', 'Jane-Smith@nus.com', 'password456', 'admin', 544),
+('Alice.Johnson', 'Alice.Johnson@sutd.com', 'password789', 'user', 332);
 
 -- Insert sample data into the Post table
 INSERT INTO Post (title, content, post_date, post_user_id) VALUES
-('First Post', 'This is the content of the first post.', '2024-01-01 10:00:00', 1),
-('Second Post', 'This is the content of the second post.', '2024-02-01 12:00:00', 2),
-('Third Post', 'This is the content of the third post.', '2024-03-01 14:00:00', 2),
-('Fourth Post', 'This is the content of the fourth post.', '2024-04-01 16:00:00', 1);
+('Embrace Everyone, Thrive Together', 'Inclusivity for all fosters a more united and resilient community.', '2024-01-01 10:43:00', 1),
+('Diversity is Our Strength', 'When we include everyone, we build a stronger, more dynamic society.', '2024-02-01 12:11:00', 2),
+('Every Voice Counts', 'Ensuring all voices are heard enriches our collective experience and decision-making.', '2024-03-01 14:32:00', 2),
+('Celebrate Differences, Create Unity', 'Recognizing and valuing each person''s uniqueness fuels progress and harmony.', '2024-03-01 16:43:00', 3),
+('Inclusive Workplaces, Stronger Teams', 'Creating inclusive environments leads to more innovative and successful outcomes for everyone.', '2024-04-01 16:23:00', 1);
