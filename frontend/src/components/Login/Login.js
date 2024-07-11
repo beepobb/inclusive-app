@@ -1,3 +1,7 @@
+import React, { useContext, useState } from 'react';
+import UserContext from '../../contexts/UserContext';
+import logIn from '../../contracts/login';
+import './Login.css';  // Ensure you have the necessary CSS for styling
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -10,25 +14,48 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
+
 const defaultTheme = createTheme();
 
 export default function SignIn({setIsAuthenticated}) {
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    if (data.get('email') && data.get('password')) {
-      // Simulate an authentication process
-      setIsAuthenticated(true);
-      navigate('/discover');
-    } else {
-        alert("Please enter both username and password");
-    }
-  };
+  const [user, setUser] = useContext(UserContext);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Login#handleSubmit', user)
+        if (email && password) {
+            logIn({ email, password })
+                .then((user) => {
+                    console.log('Got user', user);
+                    if (!user.token) {
+                        alert("Email or password is incorrect");
+                        return
+                    }
+                    setUser(user);
+                })
+                .catch((err) => {
+                    console.error("Got error", err)
+                    alert("Something went wrong, please try again");
+                })
+        }
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     const data = new FormData(event.currentTarget);
+//     console.log({
+//       email: data.get('email'),
+//       password: data.get('password'),
+//     });
+//     if (data.get('email') && data.get('password')) {
+//       // Simulate an authentication process
+//       setIsAuthenticated(true);
+//       navigate('/discover');
+//     } else {
+//         alert("Please enter both username and password");
+//     }
+//   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -83,3 +110,4 @@ export default function SignIn({setIsAuthenticated}) {
     </ThemeProvider>
   );
 }
+

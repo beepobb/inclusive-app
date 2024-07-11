@@ -2,21 +2,31 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
+  "type": "module",
   "scripts": {
     "test": "jest",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sequelize/core": "^7.0.0-alpha.41",
+    "@sequelize/mysql": "^7.0.0-alpha.41",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "errorhandler": "^1.5.1",
     "express": "^4.19.2",
-    "jest": "^29.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
     "mysql2": "^3.10.2",
-    "nodemon": "^3.1.4",
-    "process": "^0.11.10"
+    "nodemon": "^3.1.4"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-flow": "^7.24.7",
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0"
   }
 }

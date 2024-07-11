@@ -1,3 +1,8 @@
+import React, { useState, useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
+import './NewPostForm.css';
+import createPost from '../../contracts/createpost.js';
 import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -11,26 +16,53 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const defaultTheme = createTheme();
-
 const NewPostForm = () => {
+  const [user] = useContext(UserContext);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
-  const addPost = (title, content) => {
-    console.log(title, content)
-    navigate('/forum')
-    alert("Post added successfully")
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title && content) {
-      addPost({ title, content });
-      setTitle('');
-      setContent('');
-    } else {
-      alert("Please fill in all fields");
+    if (title && content && user) {
+      createPost({
+        title: title,
+        content: content,
+        post_user_id: user.id,
+      })
+        .then((result) => {
+          alert('New post created!')
+          setTitle('');
+          setContent('');
+          navigate('/forum');
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Something went wrong, please try again");
+        })
+
+
+const defaultTheme = createTheme();
+
+// const NewPostForm = () => {
+//   const [title, setTitle] = useState('');
+//   const [content, setContent] = useState('');
+//   const navigate = useNavigate();
+//   const addPost = (title, content) => {
+//     console.log(title, content)
+//     navigate('/forum')
+//     alert("Post added successfully")
+//   }
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     if (title && content) {
+//       addPost({ title, content });
+//       setTitle('');
+//       setContent('');
+//     } else {
+//       alert("Please fill in all fields");
+// >>>>>>> main
     }
   };
 
@@ -39,6 +71,22 @@ const NewPostForm = () => {
   };
 
   return (
+// <<<<<<< feat-complement-backend
+//     <form className="new-post-form" onSubmit={handleSubmit}>
+//       <input
+//         type="text"
+//         placeholder="Title"
+//         value={title}
+//         onChange={(e) => setTitle(e.target.value)}
+//       />
+//       <textarea
+//         placeholder="Content"
+//         value={content}
+//         onChange={(e) => setContent(e.target.value)}
+//       />
+//       <button type="submit">Post</button>
+//     </form>
+// =======
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -87,6 +135,7 @@ const NewPostForm = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, height: 50, backgroundColor:"#E12362", '&:hover': {backgroundColor: "#C2185B" }}}
+              onClick={handleSubmit}
             >
               Post
             </Button>

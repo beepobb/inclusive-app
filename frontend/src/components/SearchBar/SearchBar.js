@@ -1,22 +1,22 @@
 
-import React from 'react';
+import React, { useState }  from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import { InputAdornment } from '@mui/material';
 
-function SearchBar() {
+function SearchBar({ setQuery }) {
+    const [search, setSearch] = useState('');
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            // Perform search action here
-            console.log('Performing search...');
-            // You can replace the console.log with a function call to perform the actual search
+          setQuery(search);
         }
     };
     
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <TextField
+            value={search}
             variant="outlined"
             fullWidth
             InputProps={{
