@@ -91,6 +91,7 @@ body {
 .signout {
     color: #D8D8D8;
     background-color: #F7FAFC;
+    border-color: transparent;
     text-decoration: none;
     display: block;
     padding: 0.5rem 1rem;
@@ -152,33 +153,6 @@ height: auto;
     overflow-y: auto;
 }
 
-.box-text{
-    color: #FFF;
-    font-family: Inter;
-    font-size: 1.1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    padding: 1.5rem 0 0.8rem;
-}
-
-.box-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.pt-text{
-    color: #525252;
-    font-family: Inter;
-    font-size: 1.1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    padding: 0.8rem
-}
 
 /* Hide scrollbar for the main content */
 .main-content::-webkit-scrollbar {
