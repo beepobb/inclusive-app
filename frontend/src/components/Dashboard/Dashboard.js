@@ -10,7 +10,7 @@ export default function Dashboard() {
     return (
         <DefaultLayout>
             <Box sx={{marginLeft:13, marginTop:15 }}>
-                <span className='welcome-text'>Welcome back {user.name}</span>
+                <span className='welcome-text'>Welcome back { (user) ? user.name : ''}</span>
             </Box>
             <Box sx={{marginLeft: 13, marginTop:8, width: 350, height: 200, borderRadius: 2, bgcolor: '#E16262'}}>
             <div className='box-content'>
@@ -18,7 +18,7 @@ export default function Dashboard() {
                 <Box sx={{marginTop: 1, width: 290, height: 100, borderRadius: 2, bgcolor: 'white'}}>
                 <div className='box-content'>
                     <Box sx={{padding: 4}}>
-                        <span className='pt-text'>{user.points} pts</span>
+                        <span className='pt-text'>{ (user) ? user.points : 0} pts</span>
                     </Box>
                 </div>
                 </Box>

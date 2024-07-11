@@ -17,6 +17,7 @@ function SearchBar({ setQuery }) {
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <TextField
             value={search}
+            onChange={(e) => setSearch(e.target.value)}
             variant="outlined"
             fullWidth
             InputProps={{

@@ -6,7 +6,6 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import ForumIcon from '@mui/icons-material/Forum';
 import LogoutIcon from '@mui/icons-material/Logout';
 import logo from '../../uni.svg';
-import { Box } from '@mui/material';
 import UserContext from '../../contexts/UserContext';
 
 const DeafultLayout = ({ children }) => {
@@ -56,18 +55,6 @@ const DeafultLayout = ({ children }) => {
                     <span className="btn-text">Sign Out</span>
                 </div>
               </button>
-            </li>
-            <li>
-              <Box sx={{width: 250, height: 140, borderRadius: 2, bgcolor: '#E16262'}}>
-                <div className='box-content'>
-                  <span className='box-text'>Your Score</span>
-                  <Box sx={{width: 190, height: 50, borderRadius: 2, bgcolor: 'white'}}>
-                    <div className='box-content'>
-                      <span className='pt-text'>{user ? user.points : 0} pts</span>
-                    </div>
-                  </Box>
-                </div>
-              </Box>
             </li>
           </ul>
         </nav>
