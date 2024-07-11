@@ -20,6 +20,10 @@ export default function Forum() {
                 setPosts([]);
             });
     }, [query])
+    const handleAddPost = () => {
+        // Implement logic for adding a new post
+        console.log("Adding a new post");
+    };
   
     return (
         <DefaultLayout>
@@ -38,9 +42,10 @@ export default function Forum() {
                         <div>There are no posts avaialble.</div>
                     )
                 }        
+
                 <NavLink to="/forum/new-post">
-                    <button className="add-post-button">
-                    <i className="fas fa-plus-circle"></i>
+                    <button className="add-post-button" onClick={handleAddPost}>
+                        <AddCircleIcon fontSize="large" />
                     </button>
                 </NavLink>
             </div>
