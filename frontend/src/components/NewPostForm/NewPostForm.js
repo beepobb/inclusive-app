@@ -3,7 +3,6 @@ import UserContext from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import './NewPostForm.css';
 import createPost from '../../contracts/createpost.js';
-import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,8 +12,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+const defaultTheme = createTheme();
 
 const NewPostForm = () => {
   const [user] = useContext(UserContext);
@@ -41,8 +41,6 @@ const NewPostForm = () => {
           alert("Something went wrong, please try again");
         })
 
-
-const defaultTheme = createTheme();
 
 // const NewPostForm = () => {
 //   const [title, setTitle] = useState('');
