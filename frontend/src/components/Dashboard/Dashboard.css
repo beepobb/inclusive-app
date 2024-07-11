@@ -30,6 +30,17 @@
     text-align: center;
 }
 
+.pt {
+    margin-top: 5.8rem;
+    color: #525252;
+    font-family: Inter;
+    font-size: 5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 0.5rem
+}
+
 .pt-text{
     color: #525252;
     font-family: Inter;
@@ -37,5 +48,4 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    padding: 0.8rem
 }

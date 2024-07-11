@@ -8,22 +8,17 @@ export default function Dashboard() {
     const [user] = useContext(UserContext);
     
     return (
-        <DefaultLayout>
+        <DefaultLayout >
             <Box sx={{marginLeft:13, marginTop:15 }}>
-                <span className='welcome-text'>Welcome back { (user) ? user.name : ''}</span>
+                <span className='welcome-text'>Welcome back, { (user) ? user.name : ''}!</span>
             </Box>
-            <Box sx={{marginLeft: 13, marginTop:8, width: 350, height: 200, borderRadius: 2, bgcolor: '#E16262'}}>
-            <div className='box-content'>
-                <span className='box-text'>Today's Progress</span>
-                <Box sx={{marginTop: 1, width: 290, height: 100, borderRadius: 2, bgcolor: 'white'}}>
-                <div className='box-content'>
-                    <Box sx={{padding: 4}}>
-                        <span className='pt-text'>{ (user) ? user.points : 0} pts</span>
-                    </Box>
-                </div>
+            <Box sx={{textAlign:'center'}}>
+                <Box sx={{marginLeft: 50, marginTop:8, width: 350, height: 350, borderRadius: 500, bgcolor: 'white', display:'flex', flexDirection:'column', alignItems:'center'}}>
+                    <span className='pt'>{ (user) ? user.points : 0}</span>
+                    <span className='pt-text'>points</span>
                 </Box>
-            </div>
             </Box>
+            
         </DefaultLayout>
       );
 }
